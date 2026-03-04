@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: churn-api
+    env: docker
+    dockerfilePath: deployment/Dockerfile
+    plan: free
+    autoDeploy: true

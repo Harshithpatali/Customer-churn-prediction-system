@@ -1,0 +1,22 @@
+artifact_path: file:///D:/customer-churn-attention-system/mlruns/1/models/m-ebc60cbe958340a49d121eb67f6a828b/artifacts
+flavors:
+  python_function:
+    data: data
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.tensorflow
+    python_version: 3.10.11
+  tensorflow:
+    code: null
+    data: data
+    keras_version: 2.15.0
+    model_type: keras
+    save_format: tf
+mlflow_version: 3.10.0
+model_id: m-ebc60cbe958340a49d121eb67f6a828b
+model_size_bytes: 1033422
+model_uuid: m-ebc60cbe958340a49d121eb67f6a828b
+prompts: null
+run_id: 1cfdf28a908d42a698accab66375d13c
+utc_time_created: '2026-03-04 09:24:34.581732'
