@@ -1,7 +1,6 @@
 venv
+data
+mlruns
 __pycache__
 *.pyc
-mlruns
-data
 .git
-.gitignore

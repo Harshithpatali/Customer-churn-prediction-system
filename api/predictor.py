@@ -1,23 +1,27 @@
-import tensorflow as tf
+import onnxruntime as ort
 import numpy as np
 
 from api.preprocess_input import preprocess_input
 
 
-model = tf.keras.models.load_model("models/attention_model.keras")
+# Load ONNX model
+session = ort.InferenceSession("models/attention_model.onnx")
+
+input_name = session.get_inputs()[0].name
 
 
 def predict_churn(data):
 
     X = preprocess_input(data)
 
-    prob = model.predict(X)[0][0]
+    prob = session.run(
+        None,
+        {input_name: X.astype(np.float32)}
+    )[0][0][0]
 
     prediction = "Churn" if prob > 0.5 else "No Churn"
 
     return {
-
         "probability": float(prob),
-
         "prediction": prediction
     }
