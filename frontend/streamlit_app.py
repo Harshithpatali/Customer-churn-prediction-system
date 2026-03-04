@@ -1,7 +1,8 @@
 import streamlit as st
 import requests
 
-API_URL = "http://127.0.0.1:8000/predict"
+# Render API endpoint
+API_URL = "https://customer-churn-prediction-system-gdvi.onrender.com/predict"
 
 st.set_page_config(
     page_title="Customer Churn Prediction",
@@ -10,13 +11,15 @@ st.set_page_config(
 )
 
 st.title("📉 Customer Churn Prediction System")
-st.write("Predict whether a telecom customer is likely to churn.")
+st.write("Predict whether a telecom customer will churn.")
 
-st.subheader("Enter Customer Information")
+st.divider()
 
-# ------------------------
+st.subheader("Customer Information")
+
+# -------------------------
 # INPUT FIELDS
-# ------------------------
+# -------------------------
 
 gender = st.selectbox("Gender", ["Male", "Female"])
 
@@ -26,7 +29,7 @@ Partner = st.selectbox("Partner", ["Yes", "No"])
 
 Dependents = st.selectbox("Dependents", ["Yes", "No"])
 
-tenure = st.slider("Tenure (months)", 0, 72, 12)
+tenure = st.slider("Tenure (Months)", 0, 72, 12)
 
 PhoneService = st.selectbox("Phone Service", ["Yes", "No"])
 
@@ -71,7 +74,7 @@ StreamingMovies = st.selectbox(
 )
 
 Contract = st.selectbox(
-    "Contract Type",
+    "Contract",
     ["Month-to-month", "One year", "Two year"]
 )
 
@@ -104,14 +107,15 @@ TotalCharges = st.number_input(
     value=800.0
 )
 
-# ------------------------
+st.divider()
+
+# -------------------------
 # PREDICTION BUTTON
-# ------------------------
+# -------------------------
 
 if st.button("Predict Churn"):
 
     payload = {
-
         "gender": gender,
         "SeniorCitizen": SeniorCitizen,
         "Partner": Partner,
@@ -135,7 +139,9 @@ if st.button("Predict Churn"):
 
     try:
 
-        response = requests.post(API_URL, json=payload)
+        with st.spinner("Predicting..."):
+
+            response = requests.post(API_URL, json=payload)
 
         result = response.json()
 
@@ -145,7 +151,7 @@ if st.button("Predict Churn"):
 
         st.subheader("Prediction Result")
 
-        st.write("Churn Probability:", round(probability, 3))
+        st.metric("Churn Probability", round(probability, 3))
 
         if prediction == "Churn":
 
@@ -155,7 +161,9 @@ if st.button("Predict Churn"):
 
             st.success("✅ Customer Likely to Stay")
 
-        # Risk indicator
+        # Risk level indicator
+
+        st.subheader("Risk Level")
 
         if probability < 0.3:
 
@@ -171,4 +179,4 @@ if st.button("Predict Churn"):
 
     except Exception as e:
 
-        st.error("API connection error")
+        st.error("Could not connect to the prediction API.")
