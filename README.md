@@ -78,6 +78,18 @@ The system is decoupled into a microservices-style architecture for scalability.
 * **Frontend:** Streamlit.
 * **Deployment:** Render (API), Streamlit Cloud (UI).
 
+  
+## 🎯 Future Roadmap
+[ ] Explainability: Integrate SHAP values into the UI for local prediction transparency.
+
+[ ] Monitoring: Build a real-time dashboard to track model drift in production.
+
+[ ] CI/CD: Automated retraining pipeline triggered by data drift detection.
+
+[ ] Orchestration: Migration to Kubernetes (K8s) for high availability and auto-scaling.
+
+Author: [Harshith Devraj]
+
 ---
 
 ## 📦 Project Structure
@@ -129,15 +141,6 @@ JSON
  "probability": 0.83,
  "prediction": "Churn"
 }
-🎯 Future Roadmap
-[ ] Explainability: Integrate SHAP values into the UI for local prediction transparency.
-
-[ ] Monitoring: Build a real-time dashboard to track model drift in production.
-
-[ ] CI/CD: Automated retraining pipeline triggered by data drift detection.
-
-[ ] Orchestration: Migration to Kubernetes (K8s) for high availability and auto-scaling.
-
-Author: [Harshith Devraj]
 
 Machine Learning | Data Science | AI
+
